@@ -1,7 +1,7 @@
 import express from 'express';
 import http from 'http';
 import { WebSocketServer, WebSocket } from 'ws';
-import { Game, Character } from './types';
+import { Game, Character } from './types.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
