@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Character } from '../types';
 import ConditionBadge from './EffectBadge';
 import ShieldIcon from './ShieldIcon';
@@ -28,6 +28,30 @@ const PlayerCharacterCard: React.FC<PlayerCharacterCardProps> = ({ character, is
       initiative: character.initiative,
       maxHitPoints: character.maxHitPoints,
   });
+  const [hpChangeIndicator, setHpChangeIndicator] = useState<'healed' | 'damaged' | null>(null);
+  const prevHpRef = useRef<number>();
+
+  useEffect(() => {
+    const totalHp = character.hitPoints + character.temporaryHitPoints;
+    // Only run the effect if prevHpRef has been set
+    if (prevHpRef.current !== undefined) {
+        if (totalHp < prevHpRef.current) {
+            setHpChangeIndicator('damaged');
+        } else if (totalHp > prevHpRef.current) {
+            setHpChangeIndicator('healed');
+        }
+
+        // If there was a change, set a timer to remove the indicator
+        if (totalHp !== prevHpRef.current) {
+            const timer = setTimeout(() => setHpChangeIndicator(null), 1000);
+            // Cleanup timer on re-render or unmount
+            return () => clearTimeout(timer);
+        }
+    }
+    // Update the ref with the current total HP for the next render
+    prevHpRef.current = totalHp;
+  }, [character.hitPoints, character.temporaryHitPoints]);
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
@@ -46,7 +70,19 @@ const PlayerCharacterCard: React.FC<PlayerCharacterCardProps> = ({ character, is
     setTempHpInput('');
   };
 
-  const borderClass = isCurrentTurn ? 'border-4 border-yellow-400 shadow-lg shadow-yellow-400/30' : 'border-2 border-gray-700';
+  const getBorderClass = () => {
+    if (hpChangeIndicator === 'damaged') {
+      return 'border-4 border-red-500 shadow-lg shadow-red-500/30';
+    }
+    if (hpChangeIndicator === 'healed') {
+      return 'border-4 border-green-500 shadow-lg shadow-green-500/30';
+    }
+    if (isCurrentTurn) {
+      return 'border-4 border-yellow-400 shadow-lg shadow-yellow-400/30';
+    }
+    return 'border-2 border-gray-700';
+  };
+  const borderClass = getBorderClass();
 
   return (
     <div className={`w-full max-w-md bg-gray-800 rounded-lg p-6 shadow-xl transition-all duration-300 ${borderClass}`}>

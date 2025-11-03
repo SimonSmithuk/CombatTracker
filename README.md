@@ -41,6 +41,18 @@ To run this application, you only need to run the server, which handles both the
 
 ### Installation and Running the App
 
+#### For Windows Users (Easy Method)
+
+1.  **Run the Startup Script**: In the project's root directory, find and double-click the `start.bat` file.
+2.  **Automatic Setup**: This script will open a command prompt, automatically install all required dependencies, and then start the server.
+3.  **Confirmation**: Once complete, you'll see a message indicating the server is running:
+    ```
+    Server is listening on http://localhost:8080
+    ```
+    The application is now running. **Keep this command prompt window open while you use the application.** Closing it will stop the server.
+
+#### For Other Operating Systems (or Manual Setup)
+
 1.  **Install Dependencies**: Open your terminal in the project's root directory and run the following command to install the necessary Node.js packages:
     ```bash
     npm install express ws typescript ts-node @types/express @types/ws
@@ -57,12 +69,16 @@ To run this application, you only need to run the server, which handles both the
     ```
     The application is now running.
 
-4.  **Access the Application**: Open a web browser (like Chrome, Firefox, or Edge) and navigate to the server's address. If you're running it locally, the URL is:
+### Accessing the Application
+
+Once the server is running (using either method above):
+
+1.  **Open Browser**: Open a web browser (like Chrome, Firefox, or Edge) and navigate to the server's address. If you're running it locally, the URL is:
     ```
     http://localhost:8080
     ```
 
-5.  **Connect the Client**:
+2.  **Connect the Client**:
     - The first screen you see will be the "Connect to Server" page.
     - The input field will be pre-filled with `http://localhost:8080`. Keep this value if you're running the server locally. Otherwise, enter the URL where your server is hosted.
     - Click **Connect**.

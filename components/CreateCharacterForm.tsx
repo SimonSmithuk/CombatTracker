@@ -15,6 +15,7 @@ const CreateCharacterForm: React.FC<CreateCharacterFormProps> = ({ onCreate }) =
   const [error, setError] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setError(''); // Clear error on change
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -28,6 +29,16 @@ const CreateCharacterForm: React.FC<CreateCharacterFormProps> = ({ onCreate }) =
       setError('Character name is required.');
       return;
     }
+    if (formData.armorClass <= 0) {
+      setError('Armor Class must be a positive number.');
+      return;
+    }
+    if (formData.hitPoints <= 0) {
+      setError('Hit Points must be a positive number.');
+      return;
+    }
+    // Initiative can be any integer, so no specific validation is needed.
+    
     setError('');
     onCreate({
       name: formData.name,
