@@ -1,0 +1,5 @@
+{
+  "name": "D&D Combat Tracker",
+  "description": "A real-time web application for Dungeon Masters to manage Dungeons & Dragons combat encounters. DMs can create games, and players can join using a unique code to manage their character stats like HP, AC, and status effects. The DM has a complete overview and control over the battlefield.",
+  "requestFramePermissions": []
+}
