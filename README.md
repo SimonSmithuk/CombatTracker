@@ -35,55 +35,59 @@ A real-time web application designed to help Dungeon Masters (DMs) manage Dungeo
 
 To run this application, you only need to run the server, which handles both the backend logic and serves the frontend client.
 
+### Quick Start
+
+1.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+2.  **Start the server:**
+    ```bash
+    npm start
+    ```
+3.  **Open the app:**
+    Navigate to `http://localhost:8080` in your web browser and click "Connect".
+
+---
+
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) and npm (which comes with Node.js) installed on your machine.
 
-### Installation and Running the App
+### Installation and Running the App (Detailed Steps)
 
-#### For Windows Users (Easy Method)
-
-1.  **Run the Startup Script**: In the project's root directory, find and double-click the `start.bat` file.
-2.  **Automatic Setup**: This script will open a command prompt, automatically install all required dependencies, and then start the server.
-3.  **Confirmation**: Once complete, you'll see a message indicating the server is running:
-    ```
-    Server is listening on http://localhost:8080
-    ```
-    The application is now running. **Keep this command prompt window open while you use the application.** Closing it will stop the server.
-
-#### For Other Operating Systems (or Manual Setup)
-
-1.  **Install Dependencies**: Open your terminal in the project's root directory and run the following command to install the necessary Node.js packages:
+1.  **Install Dependencies**: Open your terminal in the project's root directory and run:
     ```bash
-    npm install express ws typescript ts-node @types/express @types/ws
+    npm install
     ```
+    This command reads the `package.json` file and installs all the necessary dependencies required for the server to run.
 
-2.  **Start the Server**: Run the following command in the same terminal. This will compile and run the server, which also serves all the necessary frontend files.
+2.  **Start the Server**: Once the dependencies are installed, start the server with:
     ```bash
-    ts-node server.ts
+    npm start
+    ```
+    This command executes the `start` script defined in `package.json`, which runs the TypeScript server using `ts-node`. Alternatively, you can run the provided Node.js start script directly:
+    ```bash
+    node start.js
     ```
 
-3.  **Confirmation**: If successful, you should see a message indicating the server is running:
+3.  **Confirmation**: If successful, you should see a message in your terminal indicating the server is running:
     ```
     Server is listening on http://localhost:8080
     ```
     The application is now running.
 
-### Accessing the Application
-
-Once the server is running (using either method above):
-
-1.  **Open Browser**: Open a web browser (like Chrome, Firefox, or Edge) and navigate to the server's address. If you're running it locally, the URL is:
+4.  **Access the Application**: Open a web browser (like Chrome, Firefox, or Edge) and navigate to the server's address. If you're running it locally, the URL is:
     ```
     http://localhost:8080
     ```
 
-2.  **Connect the Client**:
-    - The first screen you see will be the "Connect to Server" page.
-    - The input field will be pre-filled with `http://localhost:8080`. Keep this value if you're running the server locally. Otherwise, enter the URL where your server is hosted.
-    - Click **Connect**.
+5.  **Connect the Client**:
+    - The first screen you see is a configuration step that tells the client application where the server is located. This design allows the frontend and backend to be hosted at different URLs if needed.
+    - The input field will be pre-filled with `http://localhost:8080`. Since you are running the server locally, this is the correct address.
+    - Click **Connect** to proceed to the application's home screen.
 
-You will now be on the application's home screen, ready to create or join a game.
+You are now ready to create or join a game.
 
 ### How to Play
 

@@ -15,7 +15,7 @@ const wss = new WebSocketServer({ server });
 
 const games = new Map<string, Game>();
 const clients = new Map<string, Set<WebSocket>>();
-// Fix: Replaced `NodeJS.Timeout` with `ReturnType<typeof setInterval>` to resolve "Cannot find namespace 'NodeJS'" error.
+// Fix: Use ReturnType<typeof setInterval> to avoid NodeJS namespace issues.
 const pollingIntervals = new Map<string, ReturnType<typeof setInterval>>(); // To store polling timers for each game
 
 
